@@ -2,8 +2,14 @@ import React, { Component } from 'react'
 import * as BooksAPI from './BooksAPI'
 import SearchResults from './SearchResults'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 class SearchPage extends Component {
+
+    static propTypes = {
+        updateBook: PropTypes.func.isRequired
+    }
+
     state = {
         query: ''
     }
