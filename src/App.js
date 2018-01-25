@@ -16,14 +16,22 @@ class BooksApp extends React.Component {
   }
 
   componentDidMount() {
+    this.loadBooks();
+  }
+
+  loadBooks() {
     BooksAPI.getAll().then((books) => {
-      this.setState({ books })
-      this.setState({ loaded: true })
-      console.log(this.state.books);
+      this.setState({ books });
+      this.setState({ loaded: true });
     })
   }
 
   render() {
+
+    const updateBook = (book, shelf) => {
+      BooksAPI.update(book, shelf).then(() => this.loadBooks());
+    }
+
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -52,7 +60,7 @@ class BooksApp extends React.Component {
               <h1>MyReads</h1>
             </div>
             { this.state.loaded && (
-              <BookShelves books={this.state.books} />
+              <BookShelves books={this.state.books} updateBook={updateBook}/>
             )}
             <div className="open-search">
               <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>

@@ -37,6 +37,7 @@ class BookShelves extends Component {
                                 //className={shelf.className}
                                 heading={shelf.heading}
                                 books={shelf.books}
+                                updateBook={this.props.updateBook}
                             />)
 
         }
