@@ -36,27 +36,29 @@ class BooksApp extends React.Component {
 
     return (
       <div className="app">
+        <Route exact path="/" render={() => (
+          <div className="main-content">
+            <div className="list-books">
+              <div className="list-books-title">
+                <h1>MyReads</h1>
+              </div>
+              { this.state.loaded && (
+                <BookShelves books={this.state.books} updateBook={updateBook}/>
+              )}
+            </div>
+            <div className="open-search">
+              <Link
+                  to="/search"
+                  // className="open-search"
+              >Add a Book</Link>
+            </div>
+          </div>
+          )}
+        />
         <Route path="/search" render={({ history }) => (
           <SearchPage updateBook={updateBook} />
           )}
         />
-        <Route exact path="/" render={() => (
-          <div className="list-books">
-            <div className="list-books-title">
-              <h1>MyReads</h1>
-            </div>
-            { this.state.loaded && (
-              <BookShelves books={this.state.books} updateBook={updateBook}/>
-            )}
-          </div>
-          )}
-        />
-        <div className="open-search">
-          <Link
-              to="/search"
-              // className="open-search"
-          >Add a Book</Link>
-        </div>
       </div>
     )
   }
