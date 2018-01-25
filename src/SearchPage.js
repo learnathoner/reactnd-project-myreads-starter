@@ -10,6 +10,7 @@ class SearchPage extends Component {
     handleChange(e) {
         let query = e.target.value
         this.setState({value: query})
+        
         BooksAPI.search(query)
             .then((results) => this.setState({books: results}))
             .then(() => console.log(this.state.books))
@@ -37,9 +38,9 @@ class SearchPage extends Component {
             />    
             </div>
           </div>
-          <div className="search-books-results">
-            <ol className="books-grid"></ol>
-          </div>
+          {this.state.books && (
+            <SearchResults books={this.state.books} />
+            )}
         </div>
         )
     }
