@@ -3,19 +3,19 @@ import React, { Component } from 'react'
 class Book extends Component {
 
     state = {
-        value: this.props.book.shelf
+        shelf: this.props.book.shelf
     }
 
     handleChange(e) {
-        this.setState({value: e.target.value});
+        this.setState({shelf: e.target.value});
         this.props.updateBook(this.props.book, e.target.value);
     }
 
     render() {
-        const book = this.props.book
-        
+        const book = this.props.book        
+
         return (
-            <li key={book.id}>
+            <li>
                 <div className="book">
                     <div className="book-top">
                         <div className="book-cover"
@@ -25,7 +25,7 @@ class Book extends Component {
                         ></div>
                         <div className="book-shelf-changer">
                             <select 
-                                value={this.state.value} 
+                                value={this.state.shelf} 
                                 onChange={(e) => { this.handleChange(e) }}
                             >
                                 <option value="none" disabled>Move to...</option>

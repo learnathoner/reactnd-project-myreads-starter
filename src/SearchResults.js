@@ -10,7 +10,7 @@ class SearchResults extends Component {
         if (!books.error) {
             for (let book of books) {
                 book.shelf = 'none';
-                rows.push( <Book book={book} updateBook={this.props.updateBook}/>)
+                rows.push( <Book book={book} updateBook={this.props.updateBook} key={book.id} />)
             }
         }
 

@@ -14,7 +14,6 @@ class SearchPage extends Component {
         
         BooksAPI.search(query)
             .then((results) => this.setState({books: results}))
-            .then(() => console.log(this.state.books))
     }
 
     render () {

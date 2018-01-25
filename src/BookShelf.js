@@ -9,7 +9,7 @@ class BookShelf extends Component {
         const bookGrid = [];   
 
         for (const book of books) {
-            bookGrid.push(<Book book={book} updateBook={this.props.updateBook} />)
+            bookGrid.push(<Book book={book} updateBook={this.props.updateBook} key={book.id} />)
         }
 
         return (
