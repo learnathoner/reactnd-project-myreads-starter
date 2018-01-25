@@ -36,7 +36,7 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <SearchPage />
+          <SearchPage updateBook={updateBook}/>
         ) : (
           <div className="list-books">
             <div className="list-books-title">

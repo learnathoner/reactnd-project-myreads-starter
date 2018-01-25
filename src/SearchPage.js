@@ -39,7 +39,7 @@ class SearchPage extends Component {
             </div>
           </div>
           {this.state.books && (
-            <SearchResults books={this.state.books} />
+            <SearchResults books={this.state.books} updateBook={this.props.updateBook} />
             )}
         </div>
         )
