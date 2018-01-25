@@ -5,15 +5,24 @@ import { Link } from 'react-router-dom'
 
 class SearchPage extends Component {
     state = {
-        value: ''
+        query: ''
     }
 
     handleChange(e) {
         let query = e.target.value
-        this.setState({value: query})
+        this.setState({query: query})
         
-        BooksAPI.search(query)
-            .then((results) => this.setState({books: results}))
+        if (query.length > 0) {
+            BooksAPI.search(query)
+                .then((results) => {
+                    if (query === this.state.query) {
+                        this.setState({books: results})
+                    }
+                })
+        } else {
+            this.setState({books: []})
+        }
+                
     }
 
     render () {
@@ -33,7 +42,7 @@ class SearchPage extends Component {
               <input 
                 type="text" 
                 placeholder="Search by title or author"
-                value={this.state.value} 
+                value={this.state.query} 
                 onChange={(e) => this.handleChange(e)}
             />    
             </div>
