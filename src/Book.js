@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
 
 class Book extends Component {
+
+    state = {
+        value: this.props.book.shelf
+    };
+
+    handleChange(e) {
+        this.setState({value: e.target.value})
+    }
+
     render() {
         const book = this.props.book
 
@@ -14,7 +23,7 @@ class Book extends Component {
                                     backgroundImage: `url("${book.imageLinks.smallThumbnail}")` }}
                         ></div>
                         <div className="book-shelf-changer">
-                            <select>
+                            <select value={this.state.value} onChange={this.handleChange}>
                                 <option value="none" disabled>Move to...</option>
                                 <option value="currentlyReading">Currently Reading</option>
                                 <option value="wantToRead">Want to Read</option>
