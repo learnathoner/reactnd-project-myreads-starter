@@ -2,16 +2,12 @@ import React, { Component } from 'react'
 
 class Book extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {value: props.book.shelf};  
-        this.handleChange = this.handleChange.bind(this);
-      }
+    state = {
+        value: this.props.book.shelf
+    }
 
     handleChange(e) {
-        console.log(e.target.value);
-        
-        //this.setState({value: e.target.value});
+        this.setState({value: e.target.value});
         this.props.updateBook(this.props.book, e.target.value);
     }
 
@@ -28,7 +24,10 @@ class Book extends Component {
                                     backgroundImage: `url("${book.imageLinks.smallThumbnail}")` }}
                         ></div>
                         <div className="book-shelf-changer">
-                            <select value={this.state.value} onChange={this.handleChange}>
+                            <select 
+                                value={this.state.value} 
+                                onChange={(e) => { this.handleChange(e) }}
+                            >
                                 <option value="none" disabled>Move to...</option>
                                 <option value="currentlyReading">Currently Reading</option>
                                 <option value="wantToRead">Want to Read</option>
