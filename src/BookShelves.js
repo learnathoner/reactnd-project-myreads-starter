@@ -1,62 +1,60 @@
-import React, { Component } from 'react'
-import BookShelf from './BookShelf'
-import PropTypes from 'prop-types'
+import React, { Component } from "react";
+import BookShelf from "./BookShelf";
+import PropTypes from "prop-types";
 
 class BookShelves extends Component {
-    
-    static propTypes = {
-        books: PropTypes.array.isRequired,
-        updateBook: PropTypes.func.isRequired
-    }
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+    updateBook: PropTypes.func.isRequired
+  };
 
-    render() {
-        const books = this.props.books;
+  render() {
+    const books = this.props.books;
 
-        const shelves = [
-            {   className: 'currentlyReading', 
-                heading: 'Currently Reading',
-                books: []
-            },
-            {   className: 'read', 
-                heading: 'Read',
-                books: []
-            },
-            {   className: 'wantToRead', 
-                heading: 'Want To Read',
-                books: []
-            }
-        ];
+    const shelves = [
+      {
+        className: "currentlyReading",
+        heading: "Currently Reading",
+        books: []
+      },
+      {
+        className: "read",
+        heading: "Read",
+        books: []
+      },
+      {
+        className: "wantToRead",
+        heading: "Want To Read",
+        books: []
+      }
+    ];
 
-        const bookShelves = [];
+    const bookShelves = [];
 
-        // For each shelf, add books, then push Shelf component to bookshelf
-        for (const shelf of shelves) {
-        
-            for (const book of books) {
-                
-                if (book.shelf === shelf.className) {
-                    shelf.books.push(book);
-                }
-            }
-
-            bookShelves.push(<BookShelf
-                                key={shelf.className}
-                                heading={shelf.heading}
-                                books={shelf.books}
-                                updateBook={this.props.updateBook}
-                            />)
-
+    // For each shelf, add books, then push Shelf component to bookshelf
+    for (const shelf of shelves) {
+      for (const book of books) {
+        if (book.shelf === shelf.className) {
+          shelf.books.push(book);
         }
+      }
 
-        return (
-            <div className="list-books-content">
-                <div>
-                    { bookShelves }        
-                </div>
-            </div>
-
-        )
+      bookShelves.push(
+        <BookShelf
+          key={shelf.className}
+          heading={shelf.heading}
+          books={shelf.books}
+          updateBook={this.props.updateBook}
+        />
+      );
     }
+
+    return (
+      <div className="list-books-content">
+        <div>{bookShelves}</div>
+      </div>
+    );
+  }
 }
 
-export default BookShelves
+export default BookShelves;
