@@ -15,7 +15,11 @@ Book-sorting app created to learn application of React and React Router. Base wa
 1. **Clone from GitHub** - Clone the app using `git clone https://github.com/learnathoner/reactnd-project-myreads-starter.git`
 2. **Navigate to folder in terminal**
 3. **Install dependencies** - In terminal: `npm install`
-4. **Launch app** - In terminal: `npm start`
+4. **Launch app**
+    * **Development** - In terminal: `npm start`
+    * **Production Build**
+        1. **Install Serve** - `npm install -g serve`
+        2. **Serve Folder** - `serve -s build`
 
 ## Component Flowchart
 
