@@ -7,7 +7,8 @@ import { Route, Link } from "react-router-dom";
 
 class BooksApp extends React.Component {
   state = {
-    loaded: false
+    loaded: false,
+    books: []
   };
 
   componentDidMount() {

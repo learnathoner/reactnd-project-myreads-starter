@@ -10,8 +10,30 @@ class SearchPage extends Component {
   };
 
   state = {
-    query: ""
+    query: "",
+    myBooks: [],
+    searchBooks: [],
+    loaded: false
   };
+
+  componentDidMount() {
+    this.loadBooks();
+  }
+
+  loadBooks() {
+    BooksAPI.getAll().then(books => {
+      // Creates myBooks object, which maps each book's ID to its object
+      // Makes it easier to look up books you have on a shelf and compare to search results
+      const myBooks = {};
+
+      for (const book of books) {
+        myBooks[book.id] = book;
+      }
+
+      this.setState({ myBooks });
+      this.setState({ loaded: true });
+    });
+  }
 
   handleChange(e) {
     let query = e.target.value;
@@ -23,13 +45,13 @@ class SearchPage extends Component {
     if (query.length > 0) {
       BooksAPI.search(query).then(results => {
         if ((!results.error) && (query === this.state.query)) {
-          this.setState({ books: results });
+          this.setState({ searchBooks: results });
           return;
         }
       });
     } 
     
-    this.setState({ books: [] });
+    this.setState({ searchBooks: [] });
   }
 
   render() {
@@ -48,9 +70,10 @@ class SearchPage extends Component {
             />
           </div>
         </div>
-        {this.state.books && (
+        {this.state.loaded && (
           <SearchResults
-            books={this.state.books}
+            myBooks = {this.state.myBooks}
+            searchBooks={this.state.searchBooks}
             updateBook={this.props.updateBook}
           />
         )}
