@@ -6,6 +6,8 @@ const BookShelf = props => {
   const bookGrid = []
 
   for (const book of props.books) {
+    if (!book.rating) { book.rating = 3 }
+
     bookGrid.push(
       <Book book={book} updateBook={props.updateBook} key={book.id} />
     )

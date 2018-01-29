@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import BookRating from './BookRating'
 import PropTypes from "prop-types"
 
 class Book extends Component {
@@ -51,6 +52,7 @@ class Book extends Component {
               </select>
             </div>
           </div>
+          <BookRating book={book} />
           <div className="book-title">{book.title}</div>
           {book.authors && (
             <div className="book-authors">{book.authors.join(", ")}</div>
