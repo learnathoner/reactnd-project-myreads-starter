@@ -5,7 +5,8 @@ import PropTypes from "prop-types"
 class BookShelves extends Component {
   static propTypes = {
     books: PropTypes.array.isRequired,
-    updateBook: PropTypes.func.isRequired
+    updateBook: PropTypes.func.isRequired,
+    updateRating: PropTypes.func.isRequired
   }
 
   populateShelves(shelves) {
@@ -26,6 +27,7 @@ class BookShelves extends Component {
           heading={shelf.heading}
           books={shelf.books}
           updateBook={this.props.updateBook}
+          updateRating={this.props.updateRating}
         />
       )
     }

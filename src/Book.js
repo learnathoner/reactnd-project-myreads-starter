@@ -5,11 +5,12 @@ import PropTypes from "prop-types"
 class Book extends Component {
   static propTypes = {
     book: PropTypes.object.isRequired,
-    updateBook: PropTypes.func.isRequired
+    updateBook: PropTypes.func.isRequired,
+    updateRating: PropTypes.func
   }
 
   state = {
-    shelf: this.props.book.shelf
+    shelf: this.props.book.shelf,
   }
 
   handleChange(e) {
@@ -52,7 +53,9 @@ class Book extends Component {
               </select>
             </div>
           </div>
-          <BookRating book={book} />
+          {book.shelf === 'read' && (
+            <BookRating book={book} updateRating={this.props.updateRating} />
+          )}
           <div className="book-title">{book.title}</div>
           {book.authors && (
             <div className="book-authors">{book.authors.join(", ")}</div>

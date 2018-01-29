@@ -9,7 +9,7 @@ const BookShelf = props => {
     if (!book.rating) { book.rating = 3 }
 
     bookGrid.push(
-      <Book book={book} updateBook={props.updateBook} key={book.id} />
+      <Book book={book} updateBook={props.updateBook} updateRating={props.updateRating} key={book.id} />
     )
   }
 
@@ -24,7 +24,8 @@ const BookShelf = props => {
 BookShelf.propTypes = {
   heading: PropTypes.string.isRequired,
   books: PropTypes.array.isRequired,
-  updateBook: PropTypes.func.isRequired
+  updateBook: PropTypes.func.isRequired,
+  updateRating: PropTypes.func.isRequired
 }
 
 export default BookShelf

@@ -20,8 +20,13 @@ class ListBooksContent extends Component {
   }
 
   render() {
+
     const updateBook = (book, shelf) => {
       BooksAPI.update(book, shelf).then(() => this.loadBooks())
+    }
+
+    const updateRating = (book, rating) => {
+      BooksAPI.updateRating(book, rating).then(() => this.loadBooks())
     }
 
     return (
@@ -31,7 +36,10 @@ class ListBooksContent extends Component {
         </div>
         <div className="list-books-content">
           {this.state.loaded && (
-            <BookShelves books={this.state.books} updateBook={updateBook} />
+            <BookShelves 
+              books={this.state.books} 
+              updateBook={updateBook} 
+              updateRating={updateRating} />
           )}
         </div>
       </div>

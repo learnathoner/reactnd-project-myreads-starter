@@ -33,6 +33,7 @@ Above is the current layout of Components in the app.
         * If results are found, books are loaded from `Book`
     * `BookShelves` loads shelves from `BookShelf`
         * `BookShelf` creates a shelf using `Book`
+        * If book has been read, displays rating from `BookRatings` for book
 
 
 
