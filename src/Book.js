@@ -20,7 +20,7 @@ class Book extends Component {
     const book = this.props.book
     const thumb = book.imageLinks
       ? `url("${book.imageLinks.smallThumbnail}")`
-      : ""
+      : 'url("http://via.placeholder.com/128x193?text=No%20Cover")'
 
     return (
       <li>
