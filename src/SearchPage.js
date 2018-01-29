@@ -1,60 +1,58 @@
-import React, { Component } from "react";
-import * as BooksAPI from "./BooksAPI";
-import SearchResults from "./SearchResults";
-import { Link } from "react-router-dom";
+import React, { Component } from "react"
+import * as BooksAPI from "./BooksAPI"
+import SearchResults from "./SearchResults"
+import { Link } from "react-router-dom"
 
 class SearchPage extends Component {
-
   state = {
     query: "",
     myBooks: [],
     searchBooks: [],
     loaded: false
-  };
+  }
 
   componentDidMount() {
-    this.loadBooks();
+    this.loadBooks()
   }
 
   loadBooks() {
     BooksAPI.getAll().then(books => {
       // Creates myBooks object, which maps each book's ID to its object
       // Makes it easier to look up books you have on a shelf and compare to search results
-      const myBooks = {};
+      const myBooks = {}
 
       for (const book of books) {
-        myBooks[book.id] = book;
+        myBooks[book.id] = book
       }
 
-      this.setState({ myBooks });
-      this.setState({ loaded: true });
-    });
+      this.setState({ myBooks })
+      this.setState({ loaded: true })
+    })
   }
 
   handleChange(e) {
-    let query = e.target.value;
-    this.setState({ query: query });
+    let query = e.target.value
+    this.setState({ query: query })
 
     // If there is a query, calls BooksAPI search
     // After results, checks that there's no error and that query hasn't changed while fetching
     // If no query, query changed, or error - sets books to empty array
     if (query.length > 0) {
       BooksAPI.search(query).then(results => {
-        if ((!results.error) && (query === this.state.query)) {
-          this.setState({ searchBooks: results });
-          return;
+        if (!results.error && query === this.state.query) {
+          this.setState({ searchBooks: results })
+          return
         }
-      });
-    } 
-    
-    this.setState({ searchBooks: [] });
+      })
+    }
+
+    this.setState({ searchBooks: [] })
   }
 
   render() {
-    
     const updateBook = (book, shelf) => {
-      BooksAPI.update(book, shelf).then(() => this.loadBooks());
-    };
+      BooksAPI.update(book, shelf).then(() => this.loadBooks())
+    }
 
     return (
       <div className="search-books">
@@ -73,14 +71,14 @@ class SearchPage extends Component {
         </div>
         {this.state.loaded && (
           <SearchResults
-            myBooks={ this.state.myBooks }
-            searchBooks={ this.state.searchBooks }
-            updateBook={ updateBook }
+            myBooks={this.state.myBooks}
+            searchBooks={this.state.searchBooks}
+            updateBook={updateBook}
           />
         )}
       </div>
-    );
+    )
   }
 }
 
-export default SearchPage;
+export default SearchPage

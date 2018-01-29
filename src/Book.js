@@ -1,24 +1,26 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from "react"
+import PropTypes from "prop-types"
 
 class Book extends Component {
   static propTypes = {
     book: PropTypes.object.isRequired,
     updateBook: PropTypes.func.isRequired
-  };
+  }
 
   state = {
     shelf: this.props.book.shelf
-  };
+  }
 
   handleChange(e) {
-    this.setState({ shelf: e.target.value });
-    this.props.updateBook(this.props.book, e.target.value);
+    this.setState({ shelf: e.target.value })
+    this.props.updateBook(this.props.book, e.target.value)
   }
 
   render() {
-    const book = this.props.book;
-    const thumb = book.imageLinks ? `url("${book.imageLinks.smallThumbnail}")` : '';
+    const book = this.props.book
+    const thumb = book.imageLinks
+      ? `url("${book.imageLinks.smallThumbnail}")`
+      : ""
 
     return (
       <li>
@@ -36,7 +38,7 @@ class Book extends Component {
               <select
                 value={this.state.shelf}
                 onChange={e => {
-                  this.handleChange(e);
+                  this.handleChange(e)
                 }}
               >
                 <option value="none" disabled>
@@ -55,8 +57,8 @@ class Book extends Component {
           )}
         </div>
       </li>
-    );
+    )
   }
 }
 
-export default Book;
+export default Book

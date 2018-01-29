@@ -1,30 +1,28 @@
-import React, { Component } from "react";
-import BookShelves from './BookShelves';
-import * as BooksAPI from "./BooksAPI";
-  
-class ListBooksContent extends Component {
+import React, { Component } from "react"
+import BookShelves from "./BookShelves"
+import * as BooksAPI from "./BooksAPI"
 
+class ListBooksContent extends Component {
   state = {
     loaded: false,
     books: []
-  };
-  
-  componentDidMount() {
-    this.loadBooks();
   }
-  
+
+  componentDidMount() {
+    this.loadBooks()
+  }
+
   loadBooks() {
     BooksAPI.getAll().then(books => {
-      this.setState({ books });
-      this.setState({ loaded: true });
-    });
+      this.setState({ books })
+      this.setState({ loaded: true })
+    })
   }
-  
-  render() {
 
+  render() {
     const updateBook = (book, shelf) => {
-      BooksAPI.update(book, shelf).then(() => this.loadBooks());
-    };
+      BooksAPI.update(book, shelf).then(() => this.loadBooks())
+    }
 
     return (
       <div className="list-books">
@@ -37,8 +35,8 @@ class ListBooksContent extends Component {
           )}
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default ListBooksContent;
+export default ListBooksContent
