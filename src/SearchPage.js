@@ -2,12 +2,8 @@ import React, { Component } from "react";
 import * as BooksAPI from "./BooksAPI";
 import SearchResults from "./SearchResults";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 
 class SearchPage extends Component {
-  static propTypes = {
-    updateBook: PropTypes.func.isRequired
-  };
 
   state = {
     query: "",
@@ -55,6 +51,11 @@ class SearchPage extends Component {
   }
 
   render() {
+    
+    const updateBook = (book, shelf) => {
+      BooksAPI.update(book, shelf).then(() => this.loadBooks());
+    };
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -72,9 +73,9 @@ class SearchPage extends Component {
         </div>
         {this.state.loaded && (
           <SearchResults
-            myBooks = {this.state.myBooks}
-            searchBooks={this.state.searchBooks}
-            updateBook={this.props.updateBook}
+            myBooks={ this.state.myBooks }
+            searchBooks={ this.state.searchBooks }
+            updateBook={ updateBook }
           />
         )}
       </div>
